@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melyenes Checker | Premium Security Tools</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">◇</span>
+                <span class="logo-text">Melyenes</span>
+            </div>
+            <nav class="nav">
+                <a href="#tools" class="nav-link">Tools</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Advanced Security Suite</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Melyenes</span>
+                    <span class="title-line accent">Checker</span>
+                </h1>
+                <p class="hero-description">
+                    Professional-grade validation tools for payment processing. 
+                   CCN/CVV verification, BIN analysis, OTP validation, and enterprise encryption.
+                </p>
+                <div class="hero-actions">
+                    <a href="#tools" class="btn btn-primary">Access Tools</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">99.9%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">50K+</span>
+                    <span class="stat-label">Daily Checks</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">&lt;50ms</span>
+                    <span class="stat-label">Response</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="tools-section">
+            <div class="section-header">
+                <span class="section-tag">Tools</span>
+                <h2 class="section-title">Security Suite</h2>
+                <p class="section-subtitle">Comprehensive validation and encryption tools</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card" data-tool="ccn">
+                    <div class="tool-header">
+                        <div class="tool-icon">💳</div>
+                        <div class="tool-badge">CCN/CVV</div>
+                    </div>
+                    <h3 class="tool-title">Card Checker</h3>
+                    <p class="tool-description">
+                        Validate credit card numbers, check CVV codes, verify card schemes, and perform Luhn algorithm checks.
+                    </p>
+                    <div class="tool-input-group">
+                        <input type="text" class="tool-input" placeholder="Enter card number..." data-placeholder="4916 4500 4000 1008">
+                        <button class="tool-btn">Verify</button>
+                    </div>
+                    <div class="tool-result"></div>
+                </div>
+
+                <div class="tool-card" data-tool="bin">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔢</div>
+                        <div class="tool-badge">BIN</div>
+                    </div>
+                    <h3 class="tool-title">BIN Checker</h3>
+                    <p class="tool-description">
+                        Look up bank identification numbers to identify issuer, card type, country, and brand details.
+                    </p>
+                    <div class="tool-input-group">
+                        <input type="text" class="tool-input" placeholder="Enter BIN..." data-placeholder="491645">
+                        <button class="tool-btn">Check</button>
+                    </div>
+                    <div class="tool-result"></div>
+                </div>
+
+                <div class="tool-card" data-tool="otp">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔐</div>
+                        <div class="tool-badge">OTP</div>
+                    </div>
+                    <h3 class="tool-title">OTP Validator</h3>
+                    <p class="tool-description">
+                        Verify 3-D Secure authentication status (VBV/MBV/NVBV). Check if cards are enrollment-ready.
+                    </p>
+                    <div class="tool-input-group">
+                        <input type="text" class="tool-input" placeholder="Enter card..." data-placeholder="4916450010081008">
+                        <button class="tool-btn">Validate</button>
+                    </div>
+                    <div class="tool-result"></div>
+                </div>
+
+                <div class="tool-card" data-tool="adyen">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔒</div>
+                        <div class="tool-badge">Adyen</div>
+                    </div>
+                    <h3 class="tool-title">Adyen Encryption</h3>
+                    <p class="tool-description">
+                        Client-side card encryption using Adyen's web encryption library (n加倍密).
+                    </p>
+                    <div class="tool-input-group">
+                        <input type="text" class="tool-input" placeholder="Card number..." data-placeholder="4111111111111111">
+                        <input type="text" class="tool-input" placeholder="Expiry (MM/YY)..." data-placeholder="08/28">
+                        <input type="text" class="tool-input" placeholder="CVC..." data-placeholder="737">
+                        <button class="tool-btn">Encrypt</button>
+                    </div>
+                    <div class="tool-result"></div>
+                </div>
+
+                <div class="tool-card" data-tool="clover">
+                    <div class="tool-header">
+                        <div class="tool-icon">🍀</div>
+                        <div class="tool-badge">Clover</div>
+                    </div>
+                    <h3 class="tool-title">Clover Encryption</h3>
+                    <p class="tool-description">
+                        Generate Clover POS compatible encrypted card tokens for payment processing.
+                    </p>
+                    <div class="tool-input-group">
+                        <input type="text" class="tool-input" placeholder="Card number..." data-placeholder="4111111111111111">
+                        <input type="text" class="tool-input" placeholder="Expiry (MM/YY)..." data-placeholder="08/28">
+                        <button class="tool-btn">Encrypt</button>
+                    </div>
+                    <div class="tool-result"></div>
+                </div>
+
+                <div class="tool-card" data-tool="hash">
+                    <div class="tool-header">
+                        <div class="tool-icon">⚡</div>
+                        <div class="tool-badge">Hash</div>
+                    </div>
+                    <h3 class="tool-title">Key Hasher</h3>
+                    <p class="tool-description">
+                        Generate secure hashes for API keys and authentication tokens using SHA-256.
+                    </p>
+                    <div class="tool-input-group">
+                        <input type="text" class="tool-input" placeholder="Enter key to hash..." data-placeholder="your-api-key-here">
+                        <button class="tool-btn">Hash</button>
+                    </div>
+                    <div class="tool-result"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <div class="about-text">
+                    <span class="section-tag">About</span>
+                    <h2 class="section-title">Why Melyenes?</h2>
+                    <p class="about-description">
+                        Built by security professionals for security professionals. 
+                        Our tools are designed to be fast, accurate, and completely client-side 
+                        — your data never leaves your browser.
+                    </p>
+                    <ul class="about-features">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>100% Client-Side Processing</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>No Data Storage or Logging</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Real-Time Validation</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Updated BIN Database</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-grid">
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                        <div class="visual-cell"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="contact-content">
+                <span class="section-tag">Contact</span>
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="contact-description">
+                    Need custom integration or enterprise solutions? Reach out to our team.
+                </p>
+                <a href="mailto:contact@melyenes.com" class="btn btn-primary">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-icon">◇</span>
+                <span class="logo-text">Melyenes</span>
+            </div>
+            <p class="footer-copy">© 2026 Melyenes Checker. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Security</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
