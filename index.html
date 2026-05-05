@@ -7,15 +7,56 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-card">
+            <div class="login-header">
+                <span class="login-brand">melyenes<span class="blip"></span></span>
+                <p class="login-sub">Sign in to access the toolkit</p>
+            </div>
+            <form id="login-form" class="login-form" autocomplete="off">
+                <div class="login-field-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="login-input" placeholder="you@company.com" required spellcheck="false">
+                </div>
+                <div class="login-field-group">
+                    <label for="login-pass">Password</label>
+                    <input type="password" id="login-pass" class="login-input" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Sign in</button>
+                <p class="login-note">Don't have an account? <a href="#" id="signup-toggle">Create one</a></p>
+            </form>
+            <form id="signup-form" class="login-form" style="display:none" autocomplete="off">
+                <div class="login-field-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" class="login-input" placeholder="you@company.com" required spellcheck="false">
+                </div>
+                <div class="login-field-group">
+                    <label for="signup-pass">Password</label>
+                    <input type="password" id="signup-pass" class="login-input" placeholder="Create a password" required minlength="6">
+                </div>
+                <div class="login-field-group">
+                    <label for="signup-pass2">Confirm password</label>
+                    <input type="password" id="signup-pass2" class="login-input" placeholder="Confirm your password" required minlength="6">
+                </div>
+                <button type="submit" class="login-btn">Create account</button>
+                <p class="login-note">Already have an account? <a href="#" id="signin-toggle">Sign in</a></p>
+            </form>
+            <div id="login-error" class="login-error"></div>
+        </div>
+    </div>
+
     <nav class="topbar">
         <a href="#" class="topbar-brand">melyenes<span class="blip"></span></a>
         <div class="topbar-links">
             <a href="#toolkit">toolkit</a>
             <a href="#why">why us</a>
             <a href="#contact">say hi</a>
+            <a href="#" id="logout-btn" class="logout-link" style="display:none">log out</a>
         </div>
     </nav>
 
@@ -46,8 +87,8 @@
                     <div class="t-line t-out"><span class="t-ok">PASS</span> Visa · Luhn valid · 16 digits</div>
                     <div class="t-line"><span class="t-prompt">$</span> bin 491645</div>
                     <div class="t-line t-out"><span class="t-ok">INFO</span> Visa · Credit · US · Chase</div>
-                    <div class="t-line"><span class="t-prompt">$</span> hash my-secret-key</div>
-                    <div class="t-line t-out"><span class="t-ok">SHA2</span> a7f3c…e91d0</div>
+                    <div class="t-line"><span class="t-prompt">$</span> encrypt 4916450040001008 12/26 123</div>
+                    <div class="t-line t-out"><span class="t-ok">ENC</span> adyen_0x7f3c…e91d0</div>
                     <div class="t-line t-cursor"><span class="t-prompt">$</span> <span class="cursor-blink">_</span></div>
                 </div>
             </div>
@@ -70,8 +111,6 @@
             <span>·</span>
             <span>clover tokens</span>
             <span>·</span>
-            <span>sha-256 hashing</span>
-            <span>·</span>
             <span>client-side only</span>
             <span>·</span>
             <span>zero data stored</span>
@@ -85,15 +124,13 @@
             <span>adyen encrypt</span>
             <span>·</span>
             <span>clover tokens</span>
-            <span>·</span>
-            <span>sha-256 hashing</span>
         </div>
     </div>
 
     <section id="toolkit" class="toolkit">
         <div class="toolkit-header">
             <h2>The toolkit.</h2>
-            <p>Six tools. No sign-up. No tracking. Just paste and go.</p>
+            <p>Five tools. One account. No tracking. Just paste and go.</p>
         </div>
 
         <div class="toolkit-grid">
@@ -174,21 +211,6 @@
                 </div>
                 <div class="card-result"></div>
             </div>
-
-            <!-- Hash Generator -->
-            <div class="card" data-tool="hash">
-                <div class="card-top">
-                    <span class="card-num">06</span>
-                    <span class="card-label">HASH</span>
-                </div>
-                <h3>SHA-256 Hasher</h3>
-                <p>Generates secure SHA-256 hashes for API keys, tokens, or any string you throw at it.</p>
-                <div class="card-fields">
-                    <input type="text" class="field" placeholder="your-api-key-here" spellcheck="false">
-                    <button class="go-btn">Hash it</button>
-                </div>
-                <div class="card-result"></div>
-            </div>
         </div>
     </section>
 
@@ -202,15 +224,15 @@
             <ul class="why-list">
                 <li>
                     <strong>Nothing leaves your machine.</strong>
-                    Every check, every hash, every encryption runs 100% in your browser's JS engine.
+                    Every check, every encryption runs 100% in your browser's JS engine.
                 </li>
                 <li>
-                    <strong>No accounts. No cookies.</strong>
-                    Open the page, use the tools, close the tab. That's it.
+                    <strong>Secure access only.</strong>
+                    Sign in once, use everything. We keep freeloaders out so the tools stay fast.
                 </li>
                 <li>
                     <strong>Open logic, no black boxes.</strong>
-                    Luhn, BIN detection, SHA-256 — standard algorithms you can verify yourself.
+                    Luhn, BIN detection — standard algorithms you can verify yourself.
                 </li>
                 <li>
                     <strong>Fast, because there's no server.</strong>
@@ -229,8 +251,8 @@
                     <span class="stat-desc">average response time</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-big">6</span>
-                    <span class="stat-desc">tools, zero sign-ups</span>
+                    <span class="stat-big">5</span>
+                    <span class="stat-desc">tools, one account</span>
                 </div>
             </div>
         </div>

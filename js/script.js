@@ -1,10 +1,128 @@
-// melyenes — tool logic
+// melyenes — tool logic + auth
 
 document.addEventListener('DOMContentLoaded', () => {
+    initAuth();
     initTools();
     initSmoothScroll();
 });
 
+// ---- AUTH ----
+function initAuth() {
+    const overlay = document.getElementById('login-overlay');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const signupToggle = document.getElementById('signup-toggle');
+    const signinToggle = document.getElementById('signin-toggle');
+    const logoutBtn = document.getElementById('logout-btn');
+    const errorEl = document.getElementById('login-error');
+
+    function showError(msg) {
+        errorEl.textContent = msg;
+        setTimeout(() => { errorEl.textContent = ''; }, 4000);
+    }
+
+    function getUsers() {
+        try { return JSON.parse(localStorage.getItem('mly_users') || '{}'); }
+        catch { return {}; }
+    }
+
+    function saveUsers(users) {
+        localStorage.setItem('mly_users', JSON.stringify(users));
+    }
+
+    function setSession(email) {
+        localStorage.setItem('mly_session', email);
+    }
+
+    function getSession() {
+        return localStorage.getItem('mly_session');
+    }
+
+    function clearSession() {
+        localStorage.removeItem('mly_session');
+    }
+
+    function unlock() {
+        overlay.classList.add('hidden');
+        if (logoutBtn) logoutBtn.style.display = '';
+    }
+
+    function lock() {
+        overlay.classList.remove('hidden');
+        if (logoutBtn) logoutBtn.style.display = 'none';
+    }
+
+    // check existing session
+    if (getSession()) {
+        unlock();
+    }
+
+    // toggle forms
+    signupToggle.addEventListener('click', e => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        signupForm.style.display = '';
+        errorEl.textContent = '';
+    });
+
+    signinToggle.addEventListener('click', e => {
+        e.preventDefault();
+        signupForm.style.display = 'none';
+        loginForm.style.display = '';
+        errorEl.textContent = '';
+    });
+
+    // sign in
+    loginForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value.trim().toLowerCase();
+        const pass = document.getElementById('login-pass').value;
+
+        if (!email || !pass) { showError('Fill in both fields.'); return; }
+
+        const users = getUsers();
+        if (!users[email]) { showError('No account found. Sign up first.'); return; }
+        if (users[email] !== pass) { showError('Wrong password.'); return; }
+
+        setSession(email);
+        unlock();
+    });
+
+    // sign up
+    signupForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = document.getElementById('signup-email').value.trim().toLowerCase();
+        const pass = document.getElementById('signup-pass').value;
+        const pass2 = document.getElementById('signup-pass2').value;
+
+        if (!email || !pass || !pass2) { showError('Fill in all fields.'); return; }
+        if (pass.length < 6) { showError('Password must be at least 6 characters.'); return; }
+        if (pass !== pass2) { showError('Passwords don\'t match.'); return; }
+
+        const users = getUsers();
+        if (users[email]) { showError('Account already exists. Sign in instead.'); return; }
+
+        users[email] = pass;
+        saveUsers(users);
+        setSession(email);
+        unlock();
+    });
+
+    // log out
+    logoutBtn.addEventListener('click', e => {
+        e.preventDefault();
+        clearSession();
+        lock();
+        // reset forms
+        loginForm.reset();
+        signupForm.reset();
+        signupForm.style.display = 'none';
+        loginForm.style.display = '';
+        errorEl.textContent = '';
+    });
+}
+
+// ---- TOOLS ----
 function initTools() {
     document.querySelectorAll('.card').forEach(card => {
         const type = card.dataset.tool;
@@ -29,7 +147,6 @@ function initTools() {
 function run(type, inputs, resultEl, btn) {
     const vals = Array.from(inputs).map(i => i.value.trim());
 
-    // brief button feedback
     if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
     btn.textContent = '...';
     setTimeout(() => {
@@ -43,7 +160,6 @@ function run(type, inputs, resultEl, btn) {
         case 'otp': res = checkOTP(vals[0]); break;
         case 'adyen': res = encryptAdyen(vals[0], vals[1], vals[2]); break;
         case 'clover': res = encryptClover(vals[0], vals[1]); break;
-        case 'hash': res = hashKey(vals[0]); break;
         default: res = { ok: false, msg: 'Unknown tool' };
     }
 
@@ -161,21 +277,6 @@ function encryptClover(card, exp) {
         ok: true,
         msg: 'Token generated',
         details: { Token: token, Last4: c.slice(-4), Expiry: exp, Provider: 'Clover' }
-    };
-}
-
-// ---- Hash ----
-function hashKey(key) {
-    if (!key) return { ok: false, msg: 'Enter a string to hash.' };
-
-    const bytes = new TextEncoder().encode(key);
-    const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-    const hash = 'sha256$' + hex;
-
-    return {
-        ok: true,
-        msg: 'Hash generated',
-        details: { Algorithm: 'SHA-256', Hash: hash.length > 52 ? hash.slice(0, 52) + '…' : hash }
     };
 }
 
