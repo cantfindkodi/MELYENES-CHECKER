@@ -43,7 +43,6 @@ function run(type, inputs, resultEl, btn) {
         case 'otp': res = checkOTP(vals[0]); break;
         case 'adyen': res = encryptAdyen(vals[0], vals[1], vals[2]); break;
         case 'clover': res = encryptClover(vals[0], vals[1]); break;
-        case 'hash': res = hashKey(vals[0]); break;
         default: res = { ok: false, msg: 'Unknown tool' };
     }
 
@@ -161,21 +160,6 @@ function encryptClover(card, exp) {
         ok: true,
         msg: 'Token generated',
         details: { Token: token, Last4: c.slice(-4), Expiry: exp, Provider: 'Clover' }
-    };
-}
-
-// ---- Hash ----
-function hashKey(key) {
-    if (!key) return { ok: false, msg: 'Enter a string to hash.' };
-
-    const bytes = new TextEncoder().encode(key);
-    const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-    const hash = 'sha256$' + hex;
-
-    return {
-        ok: true,
-        msg: 'Hash generated',
-        details: { Algorithm: 'SHA-256', Hash: hash.length > 52 ? hash.slice(0, 52) + '…' : hash }
     };
 }
 

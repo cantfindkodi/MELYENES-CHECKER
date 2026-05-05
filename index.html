@@ -46,8 +46,8 @@
                     <div class="t-line t-out"><span class="t-ok">PASS</span> Visa · Luhn valid · 16 digits</div>
                     <div class="t-line"><span class="t-prompt">$</span> bin 491645</div>
                     <div class="t-line t-out"><span class="t-ok">INFO</span> Visa · Credit · US · Chase</div>
-                    <div class="t-line"><span class="t-prompt">$</span> hash my-secret-key</div>
-                    <div class="t-line t-out"><span class="t-ok">SHA2</span> a7f3c…e91d0</div>
+                    <div class="t-line"><span class="t-prompt">$</span> 3ds 4916450010081008</div>
+                    <div class="t-line t-out"><span class="t-ok">3DS</span> VBV · Enrolled</div>
                     <div class="t-line t-cursor"><span class="t-prompt">$</span> <span class="cursor-blink">_</span></div>
                 </div>
             </div>
@@ -70,8 +70,6 @@
             <span>·</span>
             <span>clover tokens</span>
             <span>·</span>
-            <span>sha-256 hashing</span>
-            <span>·</span>
             <span>client-side only</span>
             <span>·</span>
             <span>zero data stored</span>
@@ -85,15 +83,13 @@
             <span>adyen encrypt</span>
             <span>·</span>
             <span>clover tokens</span>
-            <span>·</span>
-            <span>sha-256 hashing</span>
         </div>
     </div>
 
     <section id="toolkit" class="toolkit">
         <div class="toolkit-header">
             <h2>The toolkit.</h2>
-            <p>Six tools. No sign-up. No tracking. Just paste and go.</p>
+            <p>Five tools. No sign-up. No tracking. Just paste and go.</p>
         </div>
 
         <div class="toolkit-grid">
@@ -174,21 +170,6 @@
                 </div>
                 <div class="card-result"></div>
             </div>
-
-            <!-- Hash Generator -->
-            <div class="card" data-tool="hash">
-                <div class="card-top">
-                    <span class="card-num">06</span>
-                    <span class="card-label">HASH</span>
-                </div>
-                <h3>SHA-256 Hasher</h3>
-                <p>Generates secure SHA-256 hashes for API keys, tokens, or any string you throw at it.</p>
-                <div class="card-fields">
-                    <input type="text" class="field" placeholder="your-api-key-here" spellcheck="false">
-                    <button class="go-btn">Hash it</button>
-                </div>
-                <div class="card-result"></div>
-            </div>
         </div>
     </section>
 
@@ -229,7 +210,7 @@
                     <span class="stat-desc">average response time</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-big">6</span>
+                    <span class="stat-big">5</span>
                     <span class="stat-desc">tools, zero sign-ups</span>
                 </div>
             </div>
